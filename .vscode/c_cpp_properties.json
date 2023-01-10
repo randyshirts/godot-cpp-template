@@ -1,22 +1,19 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "linux",
             "includePath": [
-                "E:\\Godot CPP Bindings\\headers",
-                "E:\\Godot CPP Bindings\\include",
-                "E:\\Godot CPP Bindings\\include\\core",
-                "E:\\Godot CPP Bindings\\include\\gen"
+                "/home/randys/src/games/godot-cpp/godot-headers/**",
+                "/home/randys/src/games/godot-cpp/include/godot_cpp/**",
+                "/home/randys/src/games/godot-cpp/include/godot_cpp/core/**",
+                "/home/randys/src/games/godot-cpp/gen/**",
+                "${workspaceFolder}/**"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "intelliSenseMode": "gcc-x64",
-            "compilerPath": "D:/Programming/MinGW/bin/g++.exe",
-            "cppStandard": "c++17",
-            "cStandard": "c11"
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64"
         }
     ],
     "version": 4

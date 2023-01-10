@@ -1,0 +1,7 @@
+godot/.import/
+.sconsign.dblite
+*.x86_64
+*.so
+*.os
+*.d
+*.pck

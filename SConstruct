@@ -1,22 +1,23 @@
 import os, subprocess, platform, sys
 
 libs_path = [
-            'E:\Godot CPP Bindings\lib'
+            '/home/randys/src/games/godot-cpp/bin'
             ]
 
 libs =  [
-        'libgodot-cpp.windows.Debug.lib',
-        'libgodot-cpp.windows.Release.lib'
+        'libgodot-cpp.linux.debug.64.a',
+        'libgodot-cpp.linux.release.64.a'
+        #'libgodot-cpp.windows.Release.lib'
         ]
 
 include_path =  [
-                "E:\\Godot CPP Bindings\\headers",
-                "E:\\Godot CPP Bindings\\include",
-                "E:\\Godot CPP Bindings\\include\\core",
-                "E:\\Godot CPP Bindings\\include\\gen"
+                "/home/randys/src/games/godot-cpp/godot-headers/",
+                "/home/randys/src/games/godot-cpp/include/",
+                "/home/randys/src/games/godot-cpp/include/core/",
+                "/home/randys/src/games/godot-cpp/include/gen/"
                 ]
 
-env = Environment(CPPPATH = include_path)
+env = Environment(CPPPATH = include_path, LIBS = libs[0], LIBPATH=libs_path)
 
 opts = Variables([],ARGUMENTS)
 opts.Add(EnumVariable
@@ -30,15 +31,16 @@ opts.Add(EnumVariable
 opts.Update(env)
 
 if env['target'] == 'debug':
-    env.Append(CCFLAGS = '/W3')
-    env.Append(CCFLAGS = '/MDd')
-    env.Append(CCFLAGS = '/Zi')
-    env.Append(CCFLAGS = '/EHsc')
-    env.Append(CCFLAGS = '/D_EBUG')
-    env.Append(CCFLAGS = '/FS')
+    #env.Append(CCFLAGS = '-W')
+    env.Append(CCFLAGS = '-MD')
+    #env.Append(CCFLAGS = '-Z')
+    #env.Append(CCFLAGS = '-EHsc')
+    env.Append(CCFLAGS = '-DNDEBUG')
+    #env.Append(CCFLAGS = '-FS')
+    
 
-    Mkdir('godot\\native')
-    env.SharedLibrary(target='godot\\native\\gdns_lib-D', source=Glob('src\\*.cpp'), INCLUDE = include_path, LIBS = libs[0], LIBPATH = libs_path)
+    Mkdir('godot/native')
+    env.SharedLibrary(target='godot/native/gdns_lib-D', source=Glob('src/*.cpp'), INCLUDE = include_path, LIBS = libs[0], LIBPATH = libs_path)
     
 else:
     env.Append(CCFLAGS = '/W3')
@@ -49,8 +51,8 @@ else:
     env.Append(CCFLAGS = '/DNDEBUG')
     env.Append(CCFLAGS = '/FS')
 
-    Mkdir('godot\\native')
-    env.SharedLibrary(target='godot\\native\\gdns_lib-R', source=Glob('src\\*.cpp'), INCLUDE = include_path, LIBS = libs[1], LIBPATH = libs_path)
+    Mkdir('godot/native')
+    env.SharedLibrary(target='godot/native/gdns_lib-R', source=Glob('src/*.cpp'), INCLUDE = include_path, LIBS = libs[1], LIBPATH = libs_path)
 
 
 
